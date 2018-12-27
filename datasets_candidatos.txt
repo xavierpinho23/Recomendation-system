@@ -1,0 +1,8 @@
+#Datasets candidatos
+
+Event Recommendation: https://www.kaggle.com/c/event-recommendation-engine-challenge/data
+
+KKBox's Music: https://www.kaggle.com/c/kkbox-music-recommendation-challenge
+
+Advertisement: https://archive.ics.uci.edu/ml/datasets/KASANDR
+
