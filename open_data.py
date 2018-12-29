@@ -39,7 +39,7 @@ def get_user_and_instrument_and_review_id():
         reader = csv.reader(musical_instrument_file)
         list_review=[]
         for line in reader:
-            list_review.append([line[2], line[1], line[8]])  #product_id, user_id and review_id
+            list_review.append([line[2], line[1], line[0]])  #product_id, user_id and review_id
         return list_review
 
 def get_all_users():
@@ -56,18 +56,18 @@ def get_users_of_a_product(product_id):
         list_users = []
         for line in reader:
                 if line[2] == product_id:
-                    list_users.append(line[3])
-    return np.unique(list_users)
+                    list_users.append([line[1],line[3]])
+    return list_users
 
 
 def get_products_of_a_user(user_id):
     with open(path+'Reviews_Musical_Instruments.csv', 'r') as musical_instrument_file:
         reader = csv.reader(musical_instrument_file)
-        list_movies = []
+        list_products = []
         for line in reader:
                 if line[1] ==  user_id:
-                    list_movies.append(line[2])
-    return list_movies
+                    list_products.append(line[2])
+    return list_products
 
 
 def get_review(product_id, user_id):
@@ -77,6 +77,14 @@ def get_review(product_id, user_id):
                 if line[2] == product_id:
                     if line[1] == user_id:
                         return line[5]
+                    
+def get_ranking(product_id, user_id):
+    with open(path+'Reviews_Musical_Instruments.csv', 'r') as musical_instrument_file:
+        reader = csv.reader(musical_instrument_file)
+        for line in reader:
+                if line[2] == product_id:
+                    if line[1] == user_id:
+                        return line[6]
 
 #def get_dict_users_products():
 #    d = {}
@@ -117,25 +125,25 @@ path = "C:/Users/XAVIER/Desktop/4º Ano - 1º Semestre/Inteligência Artificial/
 
 #Function's tests
 
-df = getDF(path+'reviews_Musical_Instruments_5.json.gz')
-dfx =df.head()
-df.to_csv(path+"Reviews_Musical_Instruments.csv")
-
-df1 = get_all_dataset()
-df1x = df1.head()
-
-lista1 = get_users_of_a_product(product_id = 'B00004Y2UT')
-
-lista2 = get_user_and_instrument_and_review_id()
-
-lista3 = get_products_of_a_user(user_id = "A2IBPI20UZIR0U")
-
-lista4 = get_review(product_id = '1384719342', user_id = "A2IBPI20UZIR0U")
-
-#lista5 = get_dict_users_products()
-
-lista6, lista7 = get_text_reviews_and_id()
-
-lista8 = open_opinion_lexicon_neg()
-
-lista9 = open_opinion_lexicon_pos()
+#df = getDF(path+'reviews_Musical_Instruments_5.json.gz')
+#dfx =df.head()
+#df.to_csv(path+"Reviews_Musical_Instruments.csv")
+#
+#df1 = get_all_dataset()
+#df1x = df1.head()
+#
+#lista1 = get_users_of_a_product(product_id = 'B00004Y2UT')
+#
+#lista2 = get_user_and_instrument_and_review_id()
+#
+#lista3 = get_products_of_a_user(user_id = "A2IBPI20UZIR0U")
+#
+#lista4 = get_review(product_id = '1384719342', user_id = "A2IBPI20UZIR0U")
+#
+##lista5 = get_dict_users_products()
+#
+#lista6, lista7 = get_text_reviews_and_id()
+#
+#lista8 = open_opinion_lexicon_neg()
+#
+#lista9 = open_opinion_lexicon_pos()
